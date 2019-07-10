@@ -1,1 +1,1 @@
-iroute {{ ansible_default_ipv4.network }} {{ ansible_default_ipv4.netmask }}
+iroute {{ INDIGOVR_LOCAL_SUBNET | ipaddr('network') }} {{ INDIGOVR_LOCAL_SUBNET | ipaddr('netmask') }}

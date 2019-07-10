@@ -16,7 +16,7 @@ port 1194
 comp-lzo
 
 # --- IP addresses for VPN
-server {{ INDIGOVR_VPN_PREFIX }}.0 255.255.255.0
+server {{ INDIGOVR_VPN_SUBNET | ipaddr('network') }} {{ INDIGOVR_VPN_SUBNET | ipaddr('netmask') }}
 ifconfig-pool-persist ipp.txt
 
 # --- Client specs
@@ -41,7 +41,7 @@ status /var/run/openvpn/vpn.status 10
 {% endif %}
 
 # --- IPv4 routing
-route {{ INDIGOVR_SUBNET }} 255.255.0.0 {{ INDIGOVR_VPN_PREFIX }}.2
+route {{ INDIGOVR_SUBNET | ipaddr('network') }} {{ INDIGOVR_SUBNET | ipaddr('netmask') }} {{ INDIGOVR_VPN_SUBNET | ipaddr('2') | ipaddr('address') }}
 
-push "route-gateway {{ INDIGOVR_VPN_PREFIX }}.1"
-push "route {{ INDIGOVR_SUBNET }} 255.255.0.0 vpn_gateway"
+push "route-gateway {{ INDIGOVR_VPN_SUBNET | ipaddr('1') | ipaddr('address') }}"
+push "route {{ INDIGOVR_SUBNET | ipaddr('network') }} {{ INDIGOVR_SUBNET | ipaddr('netmask') }} vpn_gateway"
