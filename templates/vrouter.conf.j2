@@ -16,3 +16,6 @@ fragment {{ INDIGOVR_MTU }}
 ca {{ INDIGOVR_CERT_DIR }}/ca.crt
 cert {{ INDIGOVR_CERT_DIR }}/{{ INDIGOVR_CERT_NAME }}.crt
 key {{ INDIGOVR_CERT_DIR }}/{{ INDIGOVR_CERT_NAME }}.key
+
+# tune default source IP address
+iproute /usr/local/sbin/openvpn-iproute-wrapper

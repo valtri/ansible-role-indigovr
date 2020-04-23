@@ -1,0 +1,6 @@
+#! /bin/sh
+if [ x"$1 $2" = x"route add" ]; then
+	/sbin/ip "$@" src {{ ansible_default_ipv4.address }}
+else
+	/sbin/ip "$@"
+fi

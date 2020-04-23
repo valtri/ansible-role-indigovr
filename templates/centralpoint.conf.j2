@@ -46,6 +46,8 @@ status /var/run/openvpn/vpn.status 10
 
 # --- IPv4 routing
 route {{ INDIGOVR_SUBNET }} 255.255.0.0 {{ INDIGOVR_VPN_PREFIX }}.2
+# tune default source IP address
+iproute /usr/local/sbin/openvpn-iproute-wrapper
 
 push "route-gateway {{ INDIGOVR_VPN_PREFIX }}.1"
 push "route {{ INDIGOVR_SUBNET }} 255.255.0.0 vpn_gateway"
